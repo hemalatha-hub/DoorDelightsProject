@@ -1,0 +1,48 @@
+﻿@model DoorDelightsProject.Models.FoodItem
+
+@{
+    ViewBag.Title = "FooditemDetails";
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+
+<h2>FooditemDetails</h2>
+<style>
+    .container {
+        margin-left:30px;
+    }
+</style>
+<div>
+    <h2>Details:@Model.Item_name Details</h2>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayName("Item Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Price")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Image")
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.Item_Image)" width="150" height="150" class="iconDetails" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditFooditems", new { @id = Model.FoodId }) |
+    @Html.ActionLink("Back to List", "ViewFoodItems",new { @id = Model.RestaurantId })
+</p>

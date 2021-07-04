@@ -1,0 +1,81 @@
+﻿@model DoorDelightsProject.Models.Restaurant
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+
+<h2>Delete</h2>
+<style>
+    .container {
+        margin-left:30px;
+    }
+</style>
+<p style="color:green;font-size:20px;"> @ViewBag.Notification</p>
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h2>Delete:@Model.RestaurantName</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        @{
+            var rating = Model.RestaurantRating.ToString();
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RestaurantName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RestaurantType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RestaurantLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model =>rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantImage)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.RestaurantImage)" width="150" height="150" class="iconDetails" />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Menu")
+        </div>
+    }
+</div>

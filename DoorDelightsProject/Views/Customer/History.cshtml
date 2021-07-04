@@ -1,0 +1,83 @@
+﻿@model IEnumerable<DoorDelightsProject.Models.OrderHistory>
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_LayoutCustomerMenu.cshtml";
+}
+
+<style>
+    .container {
+        margin-left: 30px;
+    }
+</style>
+<h3>History</h3>
+<p>
+    @Html.ActionLink("Back", "Menu", "Customer")
+</p>
+@{
+    var x = Model.Count();
+
+    if (x == 0)
+    {
+        <center> <p class="no-items">No Items</p></center>
+    }
+}
+@*@using (Html.BeginForm("cartlist", "Customer"))
+    {*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Item")
+        </th>
+        <th>
+            @Html.DisplayName("Restaurant")
+        </th>
+        <th>
+            @Html.DisplayName("Item Name")
+        </th>
+        <th>
+            @Html.DisplayName("Price")
+        </th>
+        <th>
+            @Html.DisplayName("Quantity")
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content(item.itemimage)" width="150" height="150" class="iconDetails" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restaurantname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Itemname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity, new { @class = "quantity" })
+            </td>
+        </tr>
+    }
+<tr>
+    <th>
+        @Html.DisplayName("Total");
+    </th>
+    <td>
+        @{
+            var sum = 0;
+            foreach (var item in Model)
+            {
+                sum = sum + item.Price * item.Quantity;
+            }
+        }
+        @sum
+    </td>
+</tr>
+</table>

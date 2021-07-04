@@ -1,0 +1,62 @@
+﻿@model DoorDelightsProject.Models.Registration
+
+@{
+    ViewBag.Title = "Customerprofile";
+    Layout = "~/Views/Shared/_LayoutCustomerMenu.cshtml";
+}
+
+<h3>Customerprofile</h3>
+
+<div>
+    <h2>Details:@Model.Username</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        @{ 
+            var phone = Model.Mobile.ToString();
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => phone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditCustomerprofile", new { id = Model.CustomerId }) |
+    @Html.ActionLink("Back to List", "Menu")
+</p>

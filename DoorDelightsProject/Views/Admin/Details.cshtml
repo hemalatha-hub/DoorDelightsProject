@@ -1,0 +1,74 @@
+﻿@model DoorDelightsProject.Models.Restaurant
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+
+<h2>Details</h2>
+<style>
+    .container {
+        margin-left:30px;
+    }
+</style>
+<div>
+    <h2>Details:@Model.RestaurantName Details</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        @{ 
+            var rating = Model.RestaurantRating.ToString();
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RestaurantName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RestaurantType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RestaurantLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RestaurantImage)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.RestaurantImage)" width="150" height="150" class="iconDetails" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantId }) |
+    @Html.ActionLink("Back to List", "Menu")
+</p>

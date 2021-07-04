@@ -1,0 +1,154 @@
+﻿@model DoorDelightsProject.Models.Registration
+
+@{
+    ViewBag.Title = "VerifyEmail";
+    Layout = "~/Views/Shared/start.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+
+
+        .body {
+            margin: 0px 0px;
+            background: url('../../Content/Images/the-blackrabbit-3Tprll8eUVI-unsplash.jpg') no-repeat center center fixed;
+            background-repeat: no-repeat;
+            /*background-image: url('../../Content/Images/the-blackrabbit-3Tprll8eUVI-unsplash.jpg');*/
+            height: 100%;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .card {
+            font-family: sans-serif;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 6em;
+            margin-bottom: 3em;
+            border-radius: 10px;
+            background-color: #ffff;
+            padding: 1.8rem;
+            box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .btn-text {
+            margin: 0;
+        }
+
+        .email-login {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .email-login label {
+                color: rgb(170 166 166);
+            }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 15px 20px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .form-control {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .cta-btn {
+            background-color: rgb(69, 69, 185);
+            color: white;
+            padding: 18px 20px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+        }
+
+            .cta-btn:active {
+                box-shadow: 0 5px rgb(69, 69, 185);
+                transform: translateY(4px);
+            }
+
+            .cta-btn:hover {
+                background-color: black;
+                cursor: pointer;
+            }
+
+        .forget-pass {
+            text-align: center;
+            display: block;
+        }
+
+
+        .text-danger {
+            color: red;
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="card">
+        @using (Html.BeginForm("VerifyEmail", "Customer"))
+        {
+            @Html.AntiForgeryToken()
+            <h2 class="title">Change Password</h2>
+            @*<p class="subtitle">Don't have an account? <a href="#"> sign Up</a></p>*@
+            <div class="email-login">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+
+                    <div class="col-md-10">
+                        @Html.HiddenFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email)
+                    <div class="col-md-101">
+                        @Html.EditorFor(model => model.Email, new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class = "form-control",
+                           placeholder = "Email",
+                           onfocus = "this.placeholder=''",
+                           onblur = "this.placeholder='Username'",
+                           @data_val = "true",
+                           @required = "required"
+                       }
+                   })
+
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="submit" class="cta-btn" />
+        }
+    </div>
+</body>
+</html>

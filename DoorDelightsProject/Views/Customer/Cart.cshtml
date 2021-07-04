@@ -1,0 +1,82 @@
+﻿@model IEnumerable<DoorDelightsProject.Models.Order>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_LayoutCustomerMenu.cshtml";
+}
+<body>
+    <h2>Cart</h2>
+
+    <p>
+        @Html.ActionLink("Back", "Menu","Customer")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Restaurantname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Itemname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemimage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Restaurantname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Itemname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itemimage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity, new { @id = "Demo" })
+                </td>
+                <td>
+                    <button onclick="increment()">+</button>
+                    <button onclick="decrement()">-</button>
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <script>
+        function increment() {
+            var x = document.getElementById('Demo');
+            var c = 0;
+            x.innerHTML = c.toString();
+            c++;
+            return c;400+
+        }
+        function decrement() {
+            document.getElementById('Demo').stepDown();
+        }
+    </script>
+</body>

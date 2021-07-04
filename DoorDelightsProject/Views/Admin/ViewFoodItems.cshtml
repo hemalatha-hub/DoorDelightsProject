@@ -1,0 +1,177 @@
+﻿@model IEnumerable<DoorDelightsProject.Models.FoodItem>
+
+@{
+    ViewBag.Title = "ViewFoodItems";
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+
+<h2>ViewFoodItems</h2>
+<style>
+    .iconDetails {
+        margin-left: 2%;
+        float: left;
+    }
+
+    .container1 {
+        width: 110%;
+        height: auto;
+        padding: 1%;
+    }
+
+    h4 {
+        margin: 0px;
+        font-size: 3em;
+        color: black;
+    }
+
+    .text {
+        font-size: 17px;
+        color: black;
+    }
+
+    .defaultpage_menu {
+        text-decoration: none;
+    }
+
+        .defaultpage_menu:hover {
+            text-decoration: none;
+        }
+
+    .edit {
+        position: absolute;
+        right: 185px;
+    }
+
+    .Details {
+        position: absolute;
+        right: 130px;
+    }
+
+    .Delete {
+        position: absolute;
+        right: 80px;
+    }
+
+    .line1 {
+        position: absolute;
+        right: 180px;
+    }
+
+    .line2 {
+        position: absolute;
+        right: 125px;
+    }
+
+    .icon-1 {
+        position: absolute;
+        right: 185px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .icon-2 {
+        position: absolute;
+        right: 130px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .icon-3 {
+        position: absolute;
+        right: 80px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .createicon {
+        position: absolute;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+    .creatediv {
+        width: 150px;
+        height: 50px;
+        margin-top: 20px;
+    }
+
+    .container {
+        margin-left: 30px;
+    }
+
+    .create {
+        border-radius: 0px;
+        font-family: 'Pacifico', cursive;
+        color: white;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0px 0px;
+        cursor: pointer;
+        padding: 9px 0px;
+        font-size: 20px;
+        /*background-color: dimgrey;*/
+        width: 80%;
+    }
+    .no-items{
+        color:red;
+        font-size:30px;
+        position:center;
+
+    }
+</style>
+<div class="creatediv">
+    <img src="~/Content/Images/plus.png" class="createicon" />
+    <div class="create">
+        @Html.ActionLink("Create New", "AddFooditems", new RouteValueDictionary(new { id = @Session["restaurantId"] }))
+    </div>
+</div>
+@{
+    var x = Model.Count();
+
+    if (x == 0)
+    {
+    <center> <p class="no-items">No Items</p></center>
+        }
+    }
+    @foreach (var item in Model)
+    {
+        @*<a href="@Url.Action("ViewFoodItems","FoodItems")" class="defaultpage_menu">*@
+
+        <div class="container">
+
+            <div>
+                <img src="@Url.Content(item.Item_Image)" width="250" height="150" class="iconDetails" />
+            </div>
+            <div style="margin-left:300px">
+                <h4>@Html.DisplayFor(model => item.Item_name)</h4>
+                <div class="text">
+                    @Html.DisplayFor(model => item.Price)
+                </div>
+
+                <a href="@Url.Action("EditFooditems","Admin", new{ id = item.FoodId })">
+                    <img src="~/Content/Images/edit.png" class="icon-1" />
+                </a>
+                <a href="@Url.Action("FooditemDetails","Admin", new{ id = item.FoodId})">
+
+                    <img src="~/Content/Images/clipboard.png" class="icon-2" />
+                </a>
+                <a href="@Url.Action("DeleteFooditem","Admin", new{ id = item.FoodId })">
+
+                    <img src="~/Content/Images/delete.png" class="icon-3" />
+                </a>
+            </div>
+            <hr width="100%" size="3" />
+        </div>
+        @*</a>*@
+    }

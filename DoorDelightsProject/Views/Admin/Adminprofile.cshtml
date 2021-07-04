@@ -1,0 +1,60 @@
+﻿@model DoorDelightsProject.Models.AdminLogin
+
+@{
+    ViewBag.Title = "Adminprofile";
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+
+<h3>Aspire</h3>
+<style>
+    .container {
+        margin-left: 30px;
+    }
+</style>
+<div>
+    <h2>@Model.Username</h2>
+    <hr />
+    @{ 
+        var mobile = Model.Mobile_No.ToString();
+    }
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayName("FullName")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayName("Username")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model =>mobile)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditProfile", new { id = Model.AdminId }) |
+    @Html.ActionLink("Back to List", "Menu")
+</p>

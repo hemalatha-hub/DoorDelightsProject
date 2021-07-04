@@ -1,0 +1,222 @@
+﻿@model  IEnumerable<DoorDelightsProject.Models.Order>
+
+
+@{
+    ViewBag.Title = "orders";
+    Layout = "~/Views/Shared/_LayoutCustomerMenu.cshtml";
+}
+
+<h2>orders</h2>
+@Session["id"]
+<style>
+    .container {
+        margin-left: 30px;
+    }
+    .quantity {
+        width: 50px;
+    }
+    .iconDetails {
+        margin-left: 2%;
+        float: left;
+    }
+
+    .container1 {
+        width: 110%;
+        height: auto;
+        padding: 1%;
+    }
+
+    h4 {
+        margin: 0px;
+        font-size: 3em;
+        color: black;
+    }
+
+    .text {
+        font-size: 17px;
+        color: black;
+    }
+
+    .defaultpage_menu {
+        text-decoration: none;
+    }
+
+        .defaultpage_menu:hover {
+            text-decoration: none;
+        }
+
+    .edit {
+        position: absolute;
+        right: 185px;
+    }
+
+    .Details {
+        position: absolute;
+        right: 130px;
+    }
+
+    .Delete {
+        position: absolute;
+        right: 80px;
+    }
+
+    .line1 {
+        position: absolute;
+        right: 180px;
+    }
+
+    .line2 {
+        position: absolute;
+        right: 125px;
+    }
+
+    .icon-1 {
+        position: absolute;
+        right: 185px;
+        width: 100px;
+        height: 30px;
+        background-color: yellow;
+        color: black;
+        border: 0px;
+    }
+
+    .icon-2 {
+        position: absolute;
+        right: 130px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .icon-3 {
+        position: absolute;
+        right: 80px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .createicon {
+        position: absolute;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+    .creatediv {
+        width: 150px;
+        height: 50px;
+        margin-top: 20px;
+    }
+
+    .container {
+        margin-left: 30px;
+    }
+
+    .create {
+        border-radius: 0px;
+        font-family: 'Pacifico', cursive;
+        color: white;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0px 0px;
+        cursor: pointer;
+        padding: 9px 0px;
+        font-size: 20px;
+        /*background-color: dimgrey;*/
+        width: 80%;
+    }
+
+    .open1 {
+        color: green;
+    }
+
+    .close1 {
+        color: red;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    foreach (var item in Model)
+    {
+
+<div class="form-horizontal">
+    <h4>Order</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => item.OrderId)
+    <div class="form-group">
+
+        <div class="col-md-10">
+            @Html.HiddenFor(model => item.FoodId, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    <div class="form-group1">
+
+        <div class="col-md-10">
+            <img src="@Url.Content(item.itemimage)" width="150" height="150" class="iconDetails" />
+
+        </div>
+    </div>
+    <div style="margin-left:300px;width:100%;height:100%">
+        <div class="form-group1">
+            @Html.LabelFor(model => item.Restaurantname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => item.Restaurantname, new { htmlAttributes = new { @class = "form-control text" } })
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group1">
+            @Html.LabelFor(model => item.Itemname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => item.Itemname, new { htmlAttributes = new { @class = "form-control text" } })
+
+            </div>
+        </div>
+
+        <div class="form-group1">
+
+            @Html.LabelFor(model => item.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.DisplayFor(model => item.Price, new { htmlAttributes = new { @class = "form-control text" } })
+
+            </div>
+        </div>
+        <div class="form-group1">
+            @Html.LabelFor(model => item.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => item.Quantity, new { htmlAttributes = new { @class = "form-control quantity text" } })
+                @Html.ValidationMessageFor(model => item.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
